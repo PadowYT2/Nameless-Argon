@@ -1,87 +1,66 @@
 {include file='header.tpl'}
+
 <body>
-{include file='sidebar.tpl'}
 
-<div class="main-content">
-    {include file='navbar.tpl'}
+    <!-- Sidebar -->
+    {include file='sidebar.tpl'}
 
-    <!-- Header -->
-    <div class="header bg-gradient-primary pb-9 pt-5 pt-md-7">
-        <div class="container-fluid">
-            <div class="header-body">
-                <h1 class="text-white">{$EDITING_PAGE}</h1>
+    <div class="main-content">
+        {include file='navbar.tpl'}
+
+        <!-- Header -->
+        <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <h1 class="text-white">{$EDITING_PAGE}</h1>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container-fluid mt--8">
-        {if isset($NEW_UPDATE)}
-        {if $NEW_UPDATE_URGENT eq true}
-        <div class="alert alert-danger">
-            {else}
-            <div class="alert alert-primary alert-dismissible" id="updateAlert">
-                <button type="button" class="close" id="closeUpdate" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {/if}
-                {$NEW_UPDATE}
-                <br/>
-                <a href="{$UPDATE_LINK}" class="btn btn-primary" style="text-decoration:none">{$UPDATE}</a>
-                <hr/>
-                {$CURRENT_VERSION}<br/>
-                {$NEW_VERSION}
-            </div>
-            {/if}
+        <div class="container-fluid mt--8">
+            <!-- Update Notification -->
+            {include file='includes/update.tpl'}
 
             <div class="card">
                 <div class="card-body">
-                    <button type="button" class="btn btn-warning" onclick="showCancelModal()">{$CANCEL}</button>
-                    <hr/>
 
-                    {if isset($SUCCESS)}
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="h3 mb-0" style="color: white;"><i class="icon fa fa-check"></i> {$SUCCESS_TITLE}
-                            </h5>
-                            {$SUCCESS}
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-md-9">
+                            <h5 style="margin-top: 7px; margin-bottom: 7px;">{$EDITING_PAGE}</h5>
                         </div>
-                    {/if}
-
-                    {if isset($ERRORS) && count($ERRORS)}
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="h3 mb-0" style="color: white;"><i
-                                        class="icon fas fa-exclamation-triangle"></i> {$ERRORS_TITLE}</h5>
-                            <ul>
-                                {foreach from=$ERRORS item=error}
-                                    <li>{$error}</li>
-                                {/foreach}
-                            </ul>
+                        <div class="col-md-3">
+                            <span class="float-md-right">
+                                <button type="button" class="btn btn-warning"
+                                    onclick="showCancelModal()">{$CANCEL}</button>
+                            </span>
                         </div>
-                    {/if}
+                    </div>
+                    <hr />
+                    <!-- Success and Error Alerts -->
+                    {include file='includes/alerts.tpl'}
 
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="inputTitle">{$PAGE_TITLE}</label>
                             <input type="text" class="form-control" name="page_title" id="inputTitle"
-                                   placeholder="{$PAGE_TITLE}" value="{$PAGE_TITLE_VALUE}">
+                                placeholder="{$PAGE_TITLE}" value="{$PAGE_TITLE_VALUE}">
                         </div>
                         <div class="form-group">
                             <label for="inputURL">{$PAGE_PATH}</label>
                             <input type="text" class="form-control" name="page_url" id="inputURL"
-                                   placeholder="{$PAGE_PATH}" value="{$PAGE_PATH_VALUE}">
+                                placeholder="{$PAGE_PATH}" value="{$PAGE_PATH_VALUE}">
                         </div>
                         <div class="form-group">
                             <label for="link_location">{$PAGE_LINK_LOCATION}</label>
                             <select class="form-control" id="link_location" name="link_location">
-                                <option value="1"{if $PAGE_LINK_LOCATION_VALUE eq 1} selected{/if}>{$PAGE_LINK_NAVBAR}</option>
-                                <option value="2"{if $PAGE_LINK_LOCATION_VALUE eq 2} selected{/if}>{$PAGE_LINK_MORE}</option>
-                                <option value="3"{if $PAGE_LINK_LOCATION_VALUE eq 3} selected{/if}>{$PAGE_LINK_FOOTER}</option>
-                                <option value="4"{if $PAGE_LINK_LOCATION_VALUE eq 4} selected{/if}>{$PAGE_LINK_NONE}</option>
+                                <option value="1" {if $PAGE_LINK_LOCATION_VALUE eq 1} selected{/if}>{$PAGE_LINK_NAVBAR}
+                                </option>
+                                <option value="2" {if $PAGE_LINK_LOCATION_VALUE eq 2} selected{/if}>{$PAGE_LINK_MORE}
+                                </option>
+                                <option value="3" {if $PAGE_LINK_LOCATION_VALUE eq 3} selected{/if}>{$PAGE_LINK_FOOTER}
+                                </option>
+                                <option value="4" {if $PAGE_LINK_LOCATION_VALUE eq 4} selected{/if}>{$PAGE_LINK_NONE}
+                                </option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -89,29 +68,38 @@
                             <textarea name="content" id="inputContent">{$PAGE_CONTENT_VALUE}</textarea>
                         </div>
                         <div class="form-group">
+                            <label for="inputBasicPage">{$BASIC_PAGE}</label>
+                            <input id="inputBasicPage" name="basic" type="checkbox" class="js-switch" {if
+                                $BASIC_PAGE_VALUE eq 1} checked{/if} />
+                        </div>
+                        <div class="form-group">
                             <label for="inputRedirect">{$PAGE_REDIRECT}</label>
-                            <input id="inputRedirect" name="redirect_page" type="checkbox"
-                                   class="js-switch"{if $PAGE_REDIRECT_VALUE eq 1} checked{/if} />
+                            <input id="inputRedirect" name="redirect_page" type="checkbox" class="js-switch" {if
+                                $PAGE_REDIRECT_VALUE eq 1} checked{/if} />
                         </div>
                         <div class="form-group">
                             <label for="inputRedirectLink">{$PAGE_REDIRECT_TO}</label>
                             <input type="text" class="form-control" id="inputRedirectLink" name="redirect_link"
-                                   placeholder="{$PAGE_REDIRECT_TO}" value="{$PAGE_REDIRECT_TO_VALUE}">
+                                placeholder="{$PAGE_REDIRECT_TO}" value="{$PAGE_REDIRECT_TO_VALUE}">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputTarget">{$TARGET}</label>
+                            <input id="inputTarget" name="target" type="checkbox" class="js-switch" {if $TARGET_VALUE eq
+                                1} checked{/if} />
                         </div>
                         <div class="form-group">
                             <label for="inputUnsafeHTML">{$UNSAFE_HTML}</label> <span data-toggle="popover"
-                                                                                      data-content="{$UNSAFE_HTML_WARNING}"
-                                                                                      class="badge badge-warning"><i
-                                        class="fas fa-exclamation-triangle"></i></span>
-                            <input id="inputUnsafeHTML" name="unsafe_html" type="checkbox"
-                                   class="js-switch"{if $UNSAFE_HTML_VALUE eq 1} checked{/if} />
+                                data-content="{$UNSAFE_HTML_WARNING}" class="badge badge-warning"><i
+                                    class="fas fa-exclamation-triangle"></i></span>
+                            <input id="inputUnsafeHTML" name="unsafe_html" type="checkbox" class="js-switch" {if
+                                $UNSAFE_HTML_VALUE eq 1} checked{/if} />
                         </div>
                         <div class="form-group">
                             <label for="inputSitemap">{$INCLUDE_IN_SITEMAP}</label>
-                            <input id="inputSitemap" name="sitemap" type="checkbox"
-                                   class="js-switch"{if $INCLUDE_IN_SITEMAP_VALUE eq 1} checked{/if} />
+                            <input id="inputSitemap" name="sitemap" type="checkbox" class="js-switch" {if
+                                $INCLUDE_IN_SITEMAP_VALUE eq 1} checked{/if} />
                         </div>
-                        <hr/>
+                        <hr />
                         <strong>{$PAGE_PERMISSIONS}</strong>
                         <script>
                             var groups = [];
@@ -119,31 +107,32 @@
                         </script>
                         <table class="table table-responsive table-striped">
                             <thead>
-                            <tr>
-                                <th>{$GROUP}</th>
-                                <th>{$VIEW_PAGE}</th>
-                            </tr>
+                                <tr>
+                                    <th>{$GROUP}</th>
+                                    <th>{$VIEW_PAGE}</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td onclick="toggleAll(this);">{$GUESTS}</td>
-                                <td><input type="hidden" name="perm-view-0" value="0"/><input
+                                <tr>
+                                    <td onclick="toggleAll(this);">{$GUESTS}</td>
+                                    <td><input type="hidden" name="perm-view-0" value="0" /><input
                                             onclick="colourUpdate(this);" name="perm-view-0" id="Input-view-0" value="1"
-                                            type="checkbox"{if $GUEST_PERMS eq 1} checked{/if} /></td>
-                            </tr>
-                            {foreach from=$GROUPS item=item}
+                                            type="checkbox" {if $GUEST_PERMS eq 1} checked{/if} /></td>
+                                </tr>
+                                {foreach from=$GROUPS item=item}
                                 <tr>
                                     <td onclick="toggleAll(this);">{$item.name}</td>
-                                    <td><input type="hidden" name="perm-view-{$item.id}" value="0"/><input
-                                                onclick="colourUpdate(this);" name="perm-view-{$item.id}"
-                                                id="Input-view-{$item.id}" value="1"
-                                                type="checkbox"{if $item.view eq 1} checked{/if} /></td>
+                                    <td><input type="hidden" name="perm-view-{$item.id}" value="0" /><input
+                                            onclick="colourUpdate(this);" name="perm-view-{$item.id}"
+                                            id="Input-view-{$item.id}" value="1" type="checkbox" {if $item.view eq 1}
+                                            checked{/if} /></td>
                                 </tr>
                                 <script>groups.push("{$item.id}");</script>
-                            {/foreach}
+                                {/foreach}
                             </tbody>
                         </table>
-                        <br/>
+
+                        </br>
                         <div class="form-group">
                             <input type="hidden" name="token" value="{$TOKEN}">
                             <input type="submit" class="btn btn-info" value="{$SUBMIT}">
@@ -153,8 +142,6 @@
                 </div>
             </div>
 
-            <!-- Spacing -->
-            <div style="height:1rem;"></div>
 
         </div>
         {include file='footer.tpl'}
@@ -239,4 +226,5 @@
     </script>
 
 </body>
+
 </html>

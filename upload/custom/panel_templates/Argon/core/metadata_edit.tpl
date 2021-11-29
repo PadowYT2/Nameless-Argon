@@ -6,7 +6,7 @@
     {include file='navbar.tpl'}
 
     <!-- Header -->
-    <div class="header bg-gradient-primary pb-9 pt-5 pt-md-7">
+    <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
         <div class="container-fluid">
             <div class="header-body">
                 <h1 class="text-white">{$EDITING_PAGE}</h1>
@@ -19,14 +19,14 @@
         {if $NEW_UPDATE_URGENT eq true}
         <div class="alert alert-danger">
             {else}
-            <div class="alert alert-primary alert-dismissible" id="updateAlert">
+            <div class="alert alert-info alert-dismissible" id="updateAlert">
                 <button type="button" class="close" id="closeUpdate" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 {/if}
                 {$NEW_UPDATE}
                 <br/>
-                <a href="{$UPDATE_LINK}" class="btn btn-primary" style="text-decoration:none">{$UPDATE}</a>
+                <a href="{$UPDATE_LINK}" class="btn btn-info" style="text-decoration:none">{$UPDATE}</a>
                 <hr/>
                 {$CURRENT_VERSION}<br/>
                 {$NEW_VERSION}
@@ -36,7 +36,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <a href="{$BACK_LINK}" class="btn btn-info">{$BACK}</a>
+                    <a href="{$BACK_LINK}" class="btn btn-warning">{$BACK}</a>
                     <hr/>
 
                     {if isset($SUCCESS)}
@@ -85,8 +85,6 @@
                 </div>
             </div>
 
-            <!-- Spacing -->
-            <div style="height:1rem;"></div>
 
         </div>
         {include file='footer.tpl'}

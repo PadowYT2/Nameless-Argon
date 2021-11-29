@@ -1,120 +1,82 @@
 {include file='header.tpl'}
+
 <body>
-{include file='sidebar.tpl'}
 
-<div class="main-content">
-    {include file='navbar.tpl'}
+    <!-- Sidebar -->
+    {include file='sidebar.tpl'}
 
-    <!-- Header -->
-    <div class="header bg-gradient-primary pb-9 pt-5 pt-md-7">
-        <div class="container-fluid">
-            <div class="header-body">
-                <h1 class="text-white">{$NICKNAME}</h1>
+    <div class="main-content">
+        {include file='navbar.tpl'}
+
+        <!-- Header -->
+        <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <h1 class="text-white">{$NICKNAME}</h1>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container-fluid mt--8">
-        {if isset($NEW_UPDATE)}
-        {if $NEW_UPDATE_URGENT eq true}
-        <div class="alert alert-danger">
-            {else}
-            <div class="alert alert-primary alert-dismissible" id="updateAlert">
-                <button type="button" class="close" id="closeUpdate" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {/if}
-                {$NEW_UPDATE}
-                <br/>
-                <a href="{$UPDATE_LINK}" class="btn btn-primary" style="text-decoration:none">{$UPDATE}</a>
-                <hr/>
-                {$CURRENT_VERSION}<br/>
-                {$NEW_VERSION}
-            </div>
-            {/if}
+        <div class="container-fluid mt--8">
+            <!-- Update Notification -->
+            {include file='includes/update.tpl'}
 
             <div class="card">
                 <div class="card-body">
-                    {if isset($SUCCESS)}
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="h3 mb-0" style="color: white;"><i class="icon fa fa-check"></i> {$SUCCESS_TITLE}
-                            </h5>
-                            {$SUCCESS}
-                        </div>
-                    {/if}
-
-                    {if isset($ERRORS) && count($ERRORS)}
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="h3 mb-0" style="color: white;"><i
-                                        class="icon fas fa-exclamation-triangle"></i> {$ERRORS_TITLE}</h5>
-                            <ul>
-                                {foreach from=$ERRORS item=error}
-                                    <li>{$error}</li>
-                                {/foreach}
-                            </ul>
-                        </div>
-                    {/if}
+                    <!-- Success and Error Alerts -->
+                    {include file='includes/alerts.tpl'}
 
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card card-primary card-outline">
-                                <div class="card-body box-profile">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
                                     <div class="text-center">
-                                        <img class="profile-user-img img-fluid rounded" src="{$AVATAR}"
-                                             alt="{$USERNAME}">
+                                        <img class="profile-user-img rounded-circle" src="{$AVATAR}" alt="{$USERNAME}">
                                     </div>
+                                    </br>
+                                    <h4 class="text-center" style="{$USER_STYLE}">{$NICKNAME}</h4>
 
-                                    <br/>
-
-                                    <h3 class="profile-username text-center" style="{$USER_STYLE}">{$NICKNAME}</h3>
-
-                                    <p class="text-muted text-center">{foreach from=$USER_GROUPS item=item}{$item} {/foreach}</p>
+                                    <p class="text-muted text-center">{foreach from=$USER_GROUPS item=item}{$item}
+                                        {/foreach}</p>
 
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
-                                            <b>{$REGISTERED}</b> <a class="float-right">{$REGISTERED_VALUE}</a>
+                                            <b>{$REGISTERED}</b><br />{$REGISTERED_VALUE}
                                         </li>
                                         <li class="list-group-item">
-                                            <b>{$LAST_SEEN}</b> <a class="float-right" data-toggle="tooltip"
-                                                                   data-title="{$LAST_SEEN_FULL_VALUE}">{$LAST_SEEN_SHORT_VALUE}</a>
+                                            <b>{$LAST_SEEN}</b><br /><span data-toggle="tooltip"
+                                                data-title="{$LAST_SEEN_FULL_VALUE}">{$LAST_SEEN_SHORT_VALUE}</span>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-9">
-                            <div class="card">
-                                <div class="card-header p-2">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
                                     <ul class="nav nav-pills">
                                         <li class="nav-item">
                                             <a class="nav-link active">{$DETAILS}</a>
                                         </li>
                                         {foreach from=$LINKS item=item}
-                                            <li class="nav-item">
-                                                <a class="nav-link"
-                                                   href="{($item.link|replace:'{id}':$USER_ID)|replace:'{username}':$USERNAME}">{$item.title}</a>
-                                            </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                                href="{($item.link|replace:'{id}':$USER_ID)|replace:'{username}':$USERNAME}">{$item.title}</a>
+                                        </li>
                                         {/foreach}
                                     </ul>
-                                </div>
-                                <div class="card-body">
+                                    <hr />
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="username">{$USERNAME_LABEL}</label>
                                                 <input id="username" type="text" class="form-control"
-                                                       value="{$USERNAME}" readonly>
+                                                    value="{$USERNAME}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="nickname">{$NICKNAME_LABEL}</label>
                                                 <input id="nickname" type="text" class="form-control"
-                                                       value="{$NICKNAME}" readonly>
+                                                    value="{$NICKNAME}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -123,12 +85,12 @@
                                             <div class="col-md-6">
                                                 <label for="title">{$USER_TITLE_LABEL}</label>
                                                 <input id="title" type="text" class="form-control" value="{$USER_TITLE}"
-                                                       readonly>
+                                                    readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="uuid">{$UUID_LABEL}</label>
                                                 <input id="uuid" type="text" class="form-control" value="{$UUID}"
-                                                       readonly>
+                                                    readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -137,12 +99,12 @@
                                             <div class="col-md-6">
                                                 <label for="language">{$LANGUAGE_LABEL}</label>
                                                 <input id="language" type="text" class="form-control"
-                                                       value="{$LANGUAGE}" readonly>
+                                                    value="{$LANGUAGE}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="timezone">{$TIMEZONE_LABEL}</label>
                                                 <input id="timezone" type="text" class="form-control"
-                                                       value="{$TIMEZONE}" readonly>
+                                                    value="{$TIMEZONE}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -155,18 +117,18 @@
                                                 <div class="col-md-12">
                                                     {/if}
                                                     {if isset($EMAIL_ADDRESS)}
-                                                        <label for="email">{$EMAIL_ADDRESS_LABEL}</label>
-                                                        <input id="email" type="email" class="form-control"
-                                                               value="{$EMAIL_ADDRESS}" readonly>
+                                                    <label for="email">{$EMAIL_ADDRESS_LABEL}</label>
+                                                    <input id="email" type="email" class="form-control"
+                                                        value="{$EMAIL_ADDRESS}" readonly>
                                                     {/if}
                                                     {if isset($EMAIL_ADDRESS) && isset($LAST_IP)}
                                                 </div>
                                                 <div class="col-md-6">
                                                     {/if}
                                                     {if isset($LAST_IP)}
-                                                        <label for="last_ip">{$LAST_IP_LABEL}</label>
-                                                        <input id="last_ip" type="text" class="form-control"
-                                                               value="{$LAST_IP}" readonly>
+                                                    <label for="last_ip">{$LAST_IP_LABEL}</label>
+                                                    <input id="last_ip" type="text" class="form-control"
+                                                        value="{$LAST_IP}" readonly>
                                                     {/if}
                                                 </div>
                                             </div>
@@ -180,8 +142,6 @@
                     </div>
                 </div>
 
-                <!-- Spacing -->
-                <div style="height:1rem;"></div>
 
             </div>
             {include file='footer.tpl'}
@@ -190,4 +150,5 @@
         {include file='scripts.tpl'}
 
 </body>
+
 </html>

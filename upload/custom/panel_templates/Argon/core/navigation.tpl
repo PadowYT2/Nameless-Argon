@@ -1,65 +1,30 @@
 {include file='header.tpl'}
+
 <body>
-{include file='sidebar.tpl'}
 
-<div class="main-content">
-    {include file='navbar.tpl'}
+    <!-- Sidebar -->
+    {include file='sidebar.tpl'}
 
-    <!-- Header -->
-    <div class="header bg-gradient-primary pb-9 pt-5 pt-md-7">
-        <div class="container-fluid">
-            <div class="header-body">
-                <h1 class="text-white">{$NAVIGATION}</h1>
+    <div class="main-content">
+        {include file='navbar.tpl'}
+
+        <!-- Header -->
+        <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <h1 class="text-white">{$NAVIGATION}</h1>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container-fluid mt--8">
-        {if isset($NEW_UPDATE)}
-        {if $NEW_UPDATE_URGENT eq true}
-        <div class="alert alert-danger">
-            {else}
-            <div class="alert alert-primary alert-dismissible" id="updateAlert">
-                <button type="button" class="close" id="closeUpdate" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {/if}
-                {$NEW_UPDATE}
-                <br/>
-                <a href="{$UPDATE_LINK}" class="btn btn-primary" style="text-decoration:none">{$UPDATE}</a>
-                <hr/>
-                {$CURRENT_VERSION}<br/>
-                {$NEW_VERSION}
-            </div>
-            {/if}
+        <div class="container-fluid mt--8">
+            <!-- Update Notification -->
+            {include file='includes/update.tpl'}
 
             <div class="card">
                 <div class="card-body">
-                    {if isset($SUCCESS)}
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="h3 mb-0" style="color: white;"><i class="icon fa fa-check"></i> {$SUCCESS_TITLE}
-                            </h5>
-                            {$SUCCESS}
-                        </div>
-                    {/if}
-
-                    {if isset($ERRORS) && count($ERRORS)}
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="h3 mb-0" style="color: white;"><i
-                                        class="icon fas fa-exclamation-triangle"></i> {$ERRORS_TITLE}</h5>
-                            <ul>
-                                {foreach from=$ERRORS item=error}
-                                    <li>{$error}</li>
-                                {/foreach}
-                            </ul>
-                        </div>
-                    {/if}
+                    <!-- Success and Error Alerts -->
+                    {include file='includes/alerts.tpl'}
 
                     <form action="" method="post">
                         <div class="alert alert-info">
@@ -68,45 +33,58 @@
                             <p>{$NAVBAR_ORDER_INSTRUCTIONS}</p>
                             <p>{$NAVBAR_ICON_INSTRUCTIONS}</p>
                         </div>
+                        <br />
                         {foreach from=$NAV_ITEMS key=key item=item}
-                            <strong>{$item.title|escape}</strong>
-                            <div class="form-group">
-                                <label for="input{$item.title|escape}">{$NAVBAR_ORDER}</label>
-                                <input type="number" min="1" class="form-control"
-                                       id="input{$item.title|escape}"
-                                       name="inputOrder[{if isset($item.custom) && is_numeric($item.custom)}{$item.custom}{else}{$key}{/if}]"
-                                       value="{$item.order|escape}">
+                        <strong>{$item.title|escape}</strong>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="input{$item.title|escape}">{$NAVBAR_ORDER}</label>
+                                    <input type="number" min="1" class="form-control" id="input{$item.title|escape}"
+                                        name="inputOrder[{if isset($item.custom) && is_numeric($item.custom)}{$item.custom}{else}{$key}{/if}]"
+                                        value="{$item.order|escape}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="input{$item.title|escape}Icon">{$NAVBAR_ICON}</label>
+                                    <input type="text" class="form-control" id="input{$item.title|escape}Icon"
+                                        name="inputIcon[{if isset($item.custom) && is_numeric($item.custom)}{$item.custom}{else}{$key}{/if}]"
+                                        value="{$item.icon|escape}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="input{$item.title|escape}Icon">{$NAVBAR_ICON}</label>
-                                <input type="text" class="form-control"
-                                       id="input{$item.title|escape}Icon"
-                                       name="inputIcon[{if isset($item.custom) && is_numeric($item.custom)}{$item.custom}{else}{$key}{/if}]"
-                                       value="{$item.icon|escape}">
+                        </div>
+                        {if isset($item.items) && count($item.items)}
+                        <br>
+                        <strong>{$item.title|escape} &raquo; {$DROPDOWN_ITEMS}</strong>
+                        <br />
+                        {foreach from=$item.items key=dropdown_key item=dropdown_item}
+                        <strong>{$dropdown_item.title|escape}</strong>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="input{$dropdown_item.title|escape}">{$NAVBAR_ORDER}</label>
+                                    <input type="number" min="1" class="form-control"
+                                        id="input{$dropdown_item.title|escape}"
+                                        name="inputOrder[{if isset($dropdown_item.custom) && is_numeric($dropdown_item.custom)}{$dropdown_item.custom}{else}{$dropdown_key}{/if}]"
+                                        value="{$dropdown_item.order|escape}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="input{$dropdown_item.title|escape}Icon">{$NAVBAR_ICON}</label>
+                                    <input type="text" class="form-control" id="input{$dropdown_item.title|escape}Icon"
+                                        name="inputIcon[{if isset($dropdown_item.custom) && is_numeric($dropdown_item.custom)}{$dropdown_item.custom}{else}{$dropdown_key}{/if}]"
+                                        value="{$dropdown_item.icon|escape}">
+                                </div>
                             </div>
-                            {if isset($item.items) && count($item.items)}
-                                <strong>{$item.title|escape} &raquo; {$DROPDOWN_ITEMS}</strong>
-                                <br/>
-                                {foreach from=$item.items key=dropdown_key item=dropdown_item}
-                                    <strong>{$dropdown_item.title|escape}</strong>
-                                    <div class="form-group">
-                                        <label for="input{$dropdown_item.title|escape}">{$NAVBAR_ORDER}</label>
-                                        <input type="number" min="1" class="form-control"
-                                               id="input{$dropdown_item.title|escape}"
-                                               name="inputOrder[{if isset($dropdown_item.custom) && is_numeric($dropdown_item.custom)}{$dropdown_item.custom}{else}{$dropdown_key}{/if}]"
-                                               value="{$dropdown_item.order|escape}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="input{$dropdown_item.title|escape}Icon">{$NAVBAR_ICON}</label>
-                                        <input type="text" class="form-control"
-                                               id="input{$dropdown_item.title|escape}Icon"
-                                               name="inputIcon[{if isset($dropdown_item.custom) && is_numeric($dropdown_item.custom)}{$dropdown_item.custom}{else}{$dropdown_key}{/if}]"
-                                               value="{$dropdown_item.icon|escape}">
-                                    </div>
-                                {/foreach}
-                            {/if}
+                        </div>
+                        {/foreach}
+                        {/if}
 
                         {/foreach}
+                        <hr>
+                        <div class="form-group">
+                            <label for="dropdown_name">{$DROPDOWN_NAME}</label>
+                            <input type="text" class="form-control" id="dropdown_name" name="dropdown_name"
+                                value="{$DROPDOWN_NAME_VALUE}">
+                        </div>
                         <div class="form-group">
                             <input type="hidden" name="token" value="{$TOKEN}">
                             <input type="submit" value="{$SUBMIT}" class="btn btn-info">
@@ -116,15 +94,14 @@
                 </div>
             </div>
 
-            <!-- Spacing -->
-            <div style="height:1rem;"></div>
 
         </div>
         {include file='footer.tpl'}
     </div>
-</div>
+    </div>
 
-{include file='scripts.tpl'}
+    {include file='scripts.tpl'}
 
 </body>
+
 </html>

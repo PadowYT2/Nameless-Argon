@@ -1,77 +1,60 @@
 {include file='header.tpl'}
+
 <body>
-{include file='sidebar.tpl'}
 
-<div class="main-content">
-    {include file='navbar.tpl'}
+    <!-- Sidebar -->
+    {include file='sidebar.tpl'}
 
-    <!-- Header -->
-    <div class="header bg-gradient-primary pb-9 pt-5 pt-md-7">
-        <div class="container-fluid">
-            <div class="header-body">
-                <h1 class="text-white">{$UPDATE}</h1>
+    <div class="main-content">
+        {include file='navbar.tpl'}
+
+        <!-- Header -->
+        <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <h1 class="text-white">{$UP}</h1>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container-fluid mt--8">
-        <div class="card">
-            <div class="card-body">
-                {if isset($SUCCESS)}
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h5 class="h3 mb-0" style="color: white;"><i class="icon fa fa-check"></i> {$SUCCESS_TITLE}</h5>
-                        {$SUCCESS}
-                    </div>
-                {/if}
+        <div class="container-fluid mt--8">
+            <!-- Update Notification -->
+            {include file='includes/update.tpl'}
 
-                {if isset($ERRORS) && count($ERRORS)}
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h5 class="h3 mb-0" style="color: white;"><i
-                                    class="icon fas fa-exclamation-triangle"></i> {$ERRORS_TITLE}</h5>
-                        <ul>
-                            {foreach from=$ERRORS item=error}
-                                <li>{$error}</li>
-                            {/foreach}
-                        </ul>
-                    </div>
-                {/if}
+            <div class="card">
+                <div class="card-body">
+                    <!-- Success and Error Alerts -->
+                    {include file='includes/alerts.tpl'}
 
-                {if isset($NEW_UPDATE)}
-                {if $NEW_UPDATE_URGENT eq true}
-                <div class="alert alert-danger">
-                    {else}
-                    <div class="alert alert-primary">
-                        {/if}
+                    {if isset($PHP_WARNING)}
+                    <div class="alert bg-danger text-white">{$PHP_WARNING}</div>
+                    {/if}
+
+                    {if !isset($PREVENT_UPGRADE)}
+                    {if isset($NEW_UPDATE)}
+                    <div class="alert {if $NEW_UPDATE_URGENT eq true}bg-danger{else}bg-info{/if} text-white">
                         {$NEW_UPDATE}
-                        <hr/>
-                        {$CURRENT_VERSION}<br/>
+                        <hr />
+                        {$CURRENT_VERSION}<br />
                         {$NEW_VERSION}
                     </div>
-
                     <h4>{$INSTRUCTIONS}</h4>
                     <p>{$INSTRUCTIONS_VALUE}</p>
-                    <hr/>
-
-                    <a href="{$DOWNLOAD_LINK}" class="btn btn-primary">{$DOWNLOAD}</a>
+                    <hr />
+                    <a href="{$DOWNLOAD_LINK}" class="btn btn-info">{$DOWNLOAD}</a>
                     <button class="btn btn-info" type="button" onclick="showConfirmModal()">{$UPDATE}</button>
                     {else}
                     <div class="alert alert-success">
-                        <h5 class="h3 mb-0" style="color: white;"><i class="icon fa fa-check"></i> {$UP_TO_DATE}</h5>
+                        <h5 class="h3 mb-0" style="color: white;"><i class="icon fa fa-check"></i> {$UP_TO_DATE}
+                        </h5>
                     </div>
                     <a href="{$CHECK_AGAIN_LINK}" class="btn btn-info">{$CHECK_AGAIN}</a>
+                    {/if}
                     {/if}
 
                 </div>
             </div>
 
-            <!-- Spacing -->
-            <div style="height:1rem;"></div>
 
         </div>
         {include file='footer.tpl'}
@@ -105,4 +88,5 @@
     </script>
 
 </body>
+
 </html>

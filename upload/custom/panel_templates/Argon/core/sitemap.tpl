@@ -6,7 +6,7 @@
     {include file='navbar.tpl'}
 
     <!-- Header -->
-    <div class="header bg-gradient-primary pb-9 pt-5 pt-md-7">
+    <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
         <div class="container-fluid">
             <div class="header-body">
                 <h1 class="text-white">{$SITEMAP}</h1>
@@ -19,14 +19,14 @@
         {if $NEW_UPDATE_URGENT eq true}
         <div class="alert alert-danger">
             {else}
-            <div class="alert alert-primary alert-dismissible" id="updateAlert">
+            <div class="alert alert-info alert-dismissible" id="updateAlert">
                 <button type="button" class="close" id="closeUpdate" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 {/if}
                 {$NEW_UPDATE}
                 <br/>
-                <a href="{$UPDATE_LINK}" class="btn btn-primary" style="text-decoration:none">{$UPDATE}</a>
+                <a href="{$UPDATE_LINK}" class="btn btn-info" style="text-decoration:none">{$UPDATE}</a>
                 <hr/>
                 {$CURRENT_VERSION}<br/>
                 {$NEW_VERSION}
@@ -67,7 +67,7 @@
                         <div class="alert alert-info">
                             <p>{$SITEMAP_LAST_GENERATED}</p>
                             <p>{$LINK}<br/><code>{$SITEMAP_FULL_LINK}</code></p>
-                            <p><a href="{$SITEMAP_LINK}" class="btn btn-primary" download
+                            <p><a href="{$SITEMAP_LINK}" class="btn btn-info" download
                                   style="color:#fff;text-decoration:none">{$DOWNLOAD_SITEMAP}</a></p>
                         </div>
                     {else}
@@ -84,8 +84,6 @@
                 </div>
             </div>
 
-            <!-- Spacing -->
-            <div style="height:1rem;"></div>
 
         </div>
         {include file='footer.tpl'}

@@ -3,9 +3,7 @@
         <hr />
         <div class="row">
             <div class="col-md-9">
-                {*
-                    We ask that you keep a link back to our website or Github somewhere on your website
-                *}
+                {* We ask that you keep a link back to our website or Github somewhere on your website *}
                 <ul class="nav nav-pills">
                     <li class="nav-item dropup">
                         <a class="nav-link dropdown-toggle nl-copyright" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">&copy; NamelessMC {'Y'|date}</a>
@@ -20,7 +18,7 @@
                 <div class="float-md-right">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">{$PAGE_LOAD_TIME}</a>
+                            <a class="nav-link">{$PAGE_LOAD_TIME}</a>
                         </li>
                     </ul>
                 </div>

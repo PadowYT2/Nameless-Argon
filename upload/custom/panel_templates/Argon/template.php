@@ -2,11 +2,11 @@
 /*
  *	Made by Samerton
  *  https://github.com/NamelessMC/Nameless/
- *  NamelessMC version 2.0.0-pr6
+ *  NamelessMC version 2.0.0-pr12
  *
  *  License: MIT
  *
- *  BlackDashboard template
+ *  Argon Panel Template
  */
 
 // Always have the following if statement around your class
@@ -23,9 +23,9 @@ if(!class_exists('Argon_Panel_Template')){
 
 			parent::__construct(
 				'Argon',  // Template name
-				'1.1.0',  // Template version
-				'2.0.0-pr7',  // Nameless version template is made for
-				'<a href="https://namelessmc.com/">Samerton</a>'  // Author, you can use HTML here
+				'1.2.0',  // Template version
+				'2.0.0-pr12',  // Nameless version template is made for
+				'<a href="https://github.com/samerton" target="_blank">Samerton</a> & <a href="https://padow.ru" target="_blank">PadowYT2</a>'  // Author, you can use HTML here
 			);
 
 			$this->addCSSFiles(array(
@@ -67,56 +67,55 @@ if(!class_exists('Argon_Panel_Template')){
 		}
 
 		public function onPageLoad(){
-			if(defined('PANEL_PAGE')){
-				switch(PANEL_PAGE){
-					case 'dashboard':
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/moment/moment.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/charts/Chart.min.js' => array()
-						));
-						break;
+            if (defined('PANEL_PAGE')) {
+                switch (PANEL_PAGE) {
+                    case 'dashboard':
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/moment/moment.min.js' => array(),
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/charts/Chart.min.js' => array()
+                        ));
+                        $this->addJSScript('
+						$(".stats-card i").addClass("fa-2x text-gray-300");
+						');
+                        break;
 
-					case 'api':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/toastr/toastr.min.css' => array()
-						));
+                    case 'api':
+                        $this->addCSSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/toastr/toastr.min.css' => array()
+                        ));
 
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/toastr/toastr.min.js' => array()
-						));
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/toastr/toastr.min.js' => array()
+                        ));
 
-						$this->addJSScript('
+                        $this->addJSScript('
 						var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-	
+
 						elems.forEach(function(html) {
 						  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 						});
 						');
 
-						break;
+                        break;
 
-					case 'avatars':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dropzone/dropzone.min.css' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.css' => array()
-						));
+                    case 'avatars':
+                        $this->addCSSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dropzone/dropzone.min.css' => array(),
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.css' => array()
+                        ));
 
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dropzone/dropzone.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.min.js' => array(),
-						));
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dropzone/dropzone.min.js' => array(),
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.min.js' => array()
+                        ));
 
-						$this->addJSScript('
+                        $this->addJSScript('
 						var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-	
+
 						elems.forEach(function(html) {
 						  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 						});
-						
+
 						// Dropzone options
 						Dropzone.options.upload_avatar_dropzone = {
 						    maxFilesize: 2,
@@ -124,41 +123,29 @@ if(!class_exists('Argon_Panel_Template')){
 						    dictInvalidFileType: "' . $this->_language->get('admin', 'invalid_file_type') . '",
 						    dictFileTooBig: "' . $this->_language->get('admin', 'file_too_big') . '"
 						};
-				
+
 						$(".image-picker").imagepicker();
 						');
 
-						break;
+                        break;
 
-					case 'custom_profile_fields':
-					case 'emails':
-					case 'reactions':
-					case 'social_media':
-					case 'widgets':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-						));
-
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array()
-						));
-
-						$this->addJSScript('
+                    case 'custom_profile_fields':
+                    case 'emails':
+                    case 'reactions':
+                    case 'social_media':
+                    case 'widgets':
+                        $this->addJSScript('
 						var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-	
+
 						elems.forEach(function(html) {
 						  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 						});
 						');
 
-						break;
+                        break;
 
-					case 'debugging_and_maintenance':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-						));
-
-						$this->addCSSStyle('
+                    case 'debugging_and_maintenance':
+                        $this->addCSSStyle('
 						.error_log {
 	                        width: 100%;
 	                        height: 400px;
@@ -173,182 +160,183 @@ if(!class_exists('Argon_Panel_Template')){
 	                    }
 						');
 
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/spoiler/js/spoiler.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
-						));
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
+                        ));
 
-						$this->addJSScript(Input::createEditor('InputMaintenanceMessage'));
-						$this->addJSScript('
+                        $this->addJSScript(Input::createEditor('InputMaintenanceMessage'));
+                        $this->addJSScript('
 						var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-	
+
 						elems.forEach(function(html) {
 						  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 						});
 						');
 
-						break;
+                        break;
 
-					case 'privacy_and_terms':
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/spoiler/js/spoiler.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
-						));
+                    case 'privacy_and_terms':
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
+                        ));
 
-						$this->addJSScript(Input::createEditor('InputPrivacy'));
-						$this->addJSScript(Input::createEditor('InputTerms'));
-						break;
+                        $this->addJSScript(Input::createEditor('InputPrivacy'));
+                        $this->addJSScript(Input::createEditor('InputTerms'));
+                        break;
 
-					case 'registration':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-						));
+                    case 'registration':
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
+                        ));
 
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array()
-						));
+                        $this->addJSScript(Input::createEditor('InputRegistrationDisabledMessage'));
 
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/spoiler/js/spoiler.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
-						));
-
-						$this->addJSScript(Input::createEditor('InputRegistrationDisabledMessage'));
-
-						$this->addJSScript('
+                        $this->addJSScript('
 						var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-	
+
 						elems.forEach(function(html) {
 						  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 						});
-	
+
 						/*
 						 *  Submit form on clicking enable/disable registration
 						 */
 						var changeCheckbox = document.querySelector(\'.js-check-change\');
-	
+
 						changeCheckbox.onchange = function() {
 						  $(\'#enableRegistration\').submit();
 						};
 						');
 
-						break;
+                        break;
 
-					case 'groups':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-						));
+                    case 'announcements':
+                    case 'groups':
+                        $this->addCSSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' => array()
+                        ));
 
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array()
-						));
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' => array(),
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/js/jquery-ui.min.js' => array()
+                        ));
 
-						$this->addJSScript('
+                        $this->addJSScript('
 						var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-	
+
 						elems.forEach(function(html) {
 						  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 						});
 						');
 
-						break;
+                        break;
 
-					case 'template':
-						if(isset($_GET['file'])){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/lib/codemirror.css' => array()
-							));
+                    case 'template':
+                        if (isset($_GET['file'])) {
+                            $this->addCSSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/lib/codemirror.css' => array()
+                            ));
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/lib/codemirror.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/mode/smarty/smarty.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/mode/css/css.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/mode/javascript/javascript.js' => array()
-							));
-						}
-						break;
+                            $this->addJSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/lib/codemirror.js' => array(),
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/mode/smarty/smarty.js' => array(),
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/mode/css/css.js' => array(),
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/mode/javascript/javascript.js' => array(),
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/codemirror/mode/properties/properties.js' => array()
+                            ));
+                        }
 
-					case 'custom_pages':
-						if(isset($_GET['action'])){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/spoiler/css/spoiler.css' => array(),
-							));
+                        if (isset($_GET['action']) && $_GET['action'] == 'permissions') {
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/spoiler/js/spoiler.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
-							));
-
-							$this->addJSScript(Input::createEditor('inputContent', true));
-							$this->addJSScript('
+                            $this->addJSScript('
 							var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-		
+
 							elems.forEach(function(html) {
 							  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 							});
 							');
-						}
-						break;
+                        }
 
-					case 'page_metadata':
-						if(!isset($_GET['id'])){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Default/assets/css/dataTables.bootstrap4.min.css' => array()
-							));
+                        break;
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dataTables/jquery.dataTables.min.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Default/assets/js/dataTables.bootstrap4.min.js' => array()
-							));
+                    case 'custom_pages':
+                        if (isset($_GET['action'])) {
+                            $this->addJSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
+                            ));
 
-							$this->addJSScript('
-							$(document).ready(function() {
-								$(\'.dataTables-pages\').dataTable({
-									responsive: true,
-									language: {
-										"lengthMenu": "' . $this->_language->get('table', 'display_records_per_page') . '",
-										"zeroRecords": "' . $this->_language->get('table', 'nothing_found') . '",
-										"info": "' . $this->_language->get('table', 'page_x_of_y') . '",
-										"infoEmpty": "' . $this->_language->get('table', 'no_records') . '",
-										"infoFiltered": "' . $this->_language->get('table', 'filtered') . '",
-										"search": "' . $this->_language->get('general', 'search') . '",
-										"paginate": {
-										    "next": "&raquo;",
-										    "previous": "&laquo;"
-										}
-									}
-								});
+                            $this->addJSScript(Input::createEditor('inputContent', true));
+                            $this->addJSScript('
+							var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
+
+							elems.forEach(function(html) {
+							  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 							});
 							');
-						}
-						break;
+                        }
+                        break;
 
-					case 'users':
-						if(!defined('EDITING_USER')){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Default/assets/css/dataTables.bootstrap4.min.css' => array()
-							));
+                    case 'seo':
+                        $this->addCSSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/css/dataTables.bootstrap4.min.css' => array()
+                        ));
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dataTables/jquery.dataTables.min.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Default/assets/js/dataTables.bootstrap4.min.js' => array()
-							));
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dataTables/jquery.dataTables.min.js' => array(),
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/js/dataTables.bootstrap4.min.js' => array()
+                        ));
 
-							$this->addJSScript('
+                        $this->addJSScript('
+                        $(document).ready(function() {
+                            $(\'.dataTables-pages\').dataTable({
+                                responsive: true,
+                                language: {
+                                    "lengthMenu": "' . $this->_language->get('table', 'display_records_per_page') . '",
+                                    "zeroRecords": "' . $this->_language->get('table', 'nothing_found') . '",
+                                    "info": "' . $this->_language->get('table', 'page_x_of_y') . '",
+                                    "infoEmpty": "' . $this->_language->get('table', 'no_records') . '",
+                                    "infoFiltered": "' . $this->_language->get('table', 'filtered') . '",
+                                    "search": "' . $this->_language->get('general', 'search') . '",
+                                    "paginate": {
+                                        "next": "' . $this->_language->get('general', 'next') . '",
+                                        "previous": "' . $this->_language->get('general', 'previous') . '"
+                                    }
+                                }
+                            });
+                        });
+                        ');
+                        break;
+
+                    case 'users':
+                        if (!defined('EDITING_USER')) {
+                            $this->addCSSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/css/dataTables.bootstrap4.min.css' => array()
+                            ));
+
+                            $this->addJSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dataTables/jquery.dataTables.min.js' => array(),
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/js/dataTables.bootstrap4.min.js' => array()
+                            ));
+
+                            $this->addJSScript('
 							$(document).ready(function() {
-								$(\'.dataTables-users\').dataTable({
+								var usersTable = $(\'.dataTables-users\').DataTable({
 									columnDefs: [
-										{ "width": "30%", target: 0 },
-										{ "width": "30%", target: 1 },
-										{ "width": "20%", target: 2 },
-										{ "width": "20%", target: 3 }
+										{ targets: [0], sClass: "hide" },
+										{ "width": "50%", target: 1 },
+										{ "width": "25%", target: 2 },
+										{ "width": "25%", target: 3 }
 									],
 									responsive: true,
+									processing: true,
+									serverSide: true,
+									ajax: "' . URL::build('/queries/admin_users') . '",
+									columns: [
+										{ data: "id", hidden: true },
+										{ data: "username" },
+										{ data: "groupName", "orderable": false },
+										{ data: "joined" }
+									],
 									language: {
 										"lengthMenu": "' . $this->_language->get('table', 'display_records_per_page') . '",
 										"zeroRecords": "' . $this->_language->get('table', 'nothing_found') . '",
@@ -357,112 +345,91 @@ if(!class_exists('Argon_Panel_Template')){
 										"infoFiltered": "' . $this->_language->get('table', 'filtered') . '",
 										"search": "' . $this->_language->get('general', 'search') . '",
 										"paginate": {
-										    "next": "&raquo;",
-										    "previous": "&laquo;"
+										    "next": "' . $this->_language->get('general', 'next') . '",
+										    "previous": "' . $this->_language->get('general', 'previous') . '"
 										}
 									}
+								});
+
+								$(\'.dataTables-users tbody\').on(\'click\', \'tr\', function(){
+									window.location.href = "' . URL::build('/panel/user/') . '" + usersTable.row(this).data().id;
 								});
 							});
 							');
 
-						}
-						break;
+                        }
+                        break;
 
-					case 'minecraft':
-						if(!defined('MINECRAFT_PAGE')){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-							));
+                    case 'minecraft':
+                        if (!defined('MINECRAFT_PAGE')) {
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array()
-							));
-
-							$this->addJSScript('
+                            $this->addJSScript('
 							var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-		
+
 							elems.forEach(function(html) {
 							  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 							});
-							
+
 							if($(\'.js-check-change\').length) {
 						        var changeCheckbox = document.querySelector(\'.js-check-change\');
-						
+
 						        changeCheckbox.onchange = function () {
 						            $(\'#enableMinecraft\').submit();
 						        };
 						    }
 							');
 
-						} else if(MINECRAFT_PAGE == 'authme'){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-							));
+                        } else if (MINECRAFT_PAGE == 'authme') {
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array()
-							));
-
-							$this->addJSScript('
+                            $this->addJSScript('
 							var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-		
+
 							elems.forEach(function(html) {
 							  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 							});
-							
+
 							if($(\'.js-check-change\').length) {
 						        var changeCheckbox = document.querySelector(\'.js-check-change\');
-						
+
 						        changeCheckbox.onchange = function () {
 						            $(\'#enableAuthMe\').submit();
 						        };
 						    }
 							');
 
-						} else if(MINECRAFT_PAGE == 'verification'){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-							));
+                        } else if (MINECRAFT_PAGE == 'verification') {
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array()
-							));
-
-							$this->addJSScript('
+                            $this->addJSScript('
 							var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-		
+
 							elems.forEach(function(html) {
 							  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 							});
-							
+
 							if($(\'.js-check-change\').length) {
 						        var changeCheckbox = document.querySelector(\'.js-check-change\');
-						
+
 						        changeCheckbox.onchange = function () {
 						            $(\'#enablePremium\').submit();
 						        };
 						    }
 							');
 
-						} else if(MINECRAFT_PAGE == 'servers'){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-							));
+                        } else if (MINECRAFT_PAGE == 'servers') {
+                            $this->addJSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/js/jquery-ui.min.js' => array()
+                            ));
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array()
-							));
-
-							$this->addJSScript('
+                            $this->addJSScript('
 							var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-		
+
 							elems.forEach(function(html) {
 							  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 							});
 							');
 
-						} else if(MINECRAFT_PAGE == 'query_errors'){
-							$this->addCSSStyle('
+                        } else if (MINECRAFT_PAGE == 'query_errors') {
+                            $this->addCSSStyle('
 							.error_log {
 		                        width: 100%;
 		                        height: 50px;
@@ -477,40 +444,58 @@ if(!class_exists('Argon_Panel_Template')){
 		                    }
 							');
 
-						} else if(MINECRAFT_PAGE == 'server_banners'){
-							if(isset($_GET['edit'])){
-								$this->addCSSFiles(array(
-									(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.css' => array()
-								));
+                        } else if (MINECRAFT_PAGE == 'server_banners') {
+                            if (isset($_GET['edit'])) {
+                                $this->addCSSFiles(array(
+                                    (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.css' => array()
+                                ));
 
-								$this->addCSSStyle('
+                                $this->addCSSStyle('
 							    .thumbnails li img{
 							        width: 200px;
 							    }
 								');
 
-								$this->addJSFiles(array(
-									(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.min.js' => array()
-								));
+                                $this->addJSFiles(array(
+                                    (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.min.js' => array()
+                                ));
 
-								$this->addJSScript('$(".image-picker").imagepicker();');
-							}
-						}
+                                $this->addJSScript('$(".image-picker").imagepicker();');
+                            }
+                        } else if (MINECRAFT_PAGE == 'placeholders') {
+                            $this->addJSScript('
+                            var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
 
-						break;
+                            elems.forEach(function(html) {
+                              var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
+                            });
+                            ');
+                        }
 
-					case 'security':
-						if(isset($_GET['view'])){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Default/assets/css/dataTables.bootstrap4.min.css' => array()
-							));
+                        break;
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dataTables/jquery.dataTables.min.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Default/assets/js/dataTables.bootstrap4.min.js' => array()
-							));
+                    case 'hooks':
+                    case 'discord':
+                        $this->addJSScript('
+							var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
 
-							$this->addJSScript('
+							elems.forEach(function(html) {
+							  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
+							});
+							');
+                        break;
+                    case 'security':
+                        if (isset($_GET['view'])) {
+                            $this->addCSSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/css/dataTables.bootstrap4.min.css' => array()
+                            ));
+
+                            $this->addJSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dataTables/jquery.dataTables.min.js' => array(),
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/js/dataTables.bootstrap4.min.js' => array()
+                            ));
+
+                            $this->addJSScript('
 							$(document).ready(function() {
 								$(\'.dataTable\').dataTable({
 									responsive: true,
@@ -522,29 +507,29 @@ if(!class_exists('Argon_Panel_Template')){
 										"infoFiltered": "' . $this->_language->get('table', 'filtered') . '",
 										"search": "' . $this->_language->get('general', 'search') . '",
 										"paginate": {
-										    "next": "&raquo;",
-										    "previous": "&laquo;"
+										    "next": "' . $this->_language->get('general', 'next') . '",
+										    "previous": "' . $this->_language->get('general', 'previous') . '"
 										}
 									},
-									order: [[ 2, \'desc\']]
+									order: [[ ' . SORT . ', \'desc\']]
 								});
 							});
 							');
-						}
-						break;
+                        }
+                        break;
 
-					case 'images':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dropzone/dropzone.min.css' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.css' => array()
-						));
+                    case 'images':
+                        $this->addCSSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dropzone/dropzone.min.css' => array(),
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.css' => array()
+                        ));
 
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dropzone/dropzone.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.min.js' => array(),
-						));
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dropzone/dropzone.min.js' => array(),
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/image-picker/image-picker.min.js' => array(),
+                        ));
 
-						$this->addJSScript('
+                        $this->addJSScript('
 						// Dropzone options
 						Dropzone.options.upload_background_dropzone = {
 						    maxFilesize: 2,
@@ -562,7 +547,7 @@ if(!class_exists('Argon_Panel_Template')){
 					            console.log(response);
 					        }
 						};
-						
+
 						Dropzone.options.upload_banner_dropzone = {
 						    maxFilesize: 2,
 						    dictDefaultMessage: "' . $this->_language->get('admin', 'drag_files_here') . '",
@@ -579,131 +564,37 @@ if(!class_exists('Argon_Panel_Template')){
 					            console.log(response);
 					        }
 						};
-				
+
 						$(".image-picker").imagepicker();
 						');
-						break;
+                        break;
 
-					case 'forums':
-						if(isset($_GET['forum'])){
-							$this->addCSSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/spoiler/css/spoiler.css' => array(),
-							));
+                    case 'forums':
+                        if (isset($_GET['forum'])) {
 
-							$this->addJSFiles(array(
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/spoiler/js/spoiler.js' => array(),
-								(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
-							));
+                            $this->addJSFiles(array(
+                                (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array()
+                            ));
 
-							$this->addJSScript(Input::createEditor('InputPlaceholder', true));
-						}
+                            $this->addJSScript(Input::createEditor('InputPlaceholder', true));
+                        }
 
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-						));
+                        $this->addJSFiles(array(
+                            (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/js/jquery-ui.min.js' => array()
+                        ));
 
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/js/jquery-ui.min.js' => array()
-						));
-
-						$this->addJSScript('
+                        break;
+                        
+                    case 'forum_settings':
+                        $this->addJSScript('
 						var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-	
+
 						elems.forEach(function(html) {
 						  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
 						});
 						');
 
-						break;
-
-					case 'buycraft':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.css' => array()
-						));
-
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/switchery/switchery.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/emoji/js/emojione.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/spoiler/js/spoiler.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/ckeditor.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/ckeditor/plugins/emojione/dialogs/emojione.json' => array()
-						));
-
-						$this->addJSScript(Input::createEditor('inputStoreContent', true));
-						$this->addJSScript('
-							var elems = Array.prototype.slice.call(document.querySelectorAll(\'.js-switch\'));
-						
-							elems.forEach(function(html) {
-							  var switchery = new Switchery(html, {color: \'#23923d\', secondaryColor: \'#e56464\'});
-							});
-						');
-						break;
-
-					case 'buycraft_bans':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/css/dataTables.bootstrap4.min.css' => array()
-						));
-
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dataTables/jquery.dataTables.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/js/dataTables.bootstrap4.min.js' => array()
-						));
-
-						$this->addJSScript('
-							$(document).ready(function() {
-								$(\'.dataTables-bans\').dataTable({
-									responsive: true,
-									language: {
-										"lengthMenu": "' . $this->_language->get('table', 'display_records_per_page') . '",
-										"zeroRecords": "' . $this->_language->get('table', 'nothing_found') . '",
-										"info": "' . $this->_language->get('table', 'page_x_of_y') . '",
-										"infoEmpty": "' . $this->_language->get('table', 'no_records') . '",
-										"infoFiltered": "' . $this->_language->get('table', 'filtered') . '",
-										"search": "' . $this->_language->get('general', 'search') . '",
-										"paginate": {
-										    "next": "&raquo;",
-										    "previous": "&laquo;"
-										}
-									}
-								});
-							});
-						');
-						break;
-
-					case 'buycraft_payments':
-						$this->addCSSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/css/dataTables.bootstrap4.min.css' => array()
-						));
-
-						$this->addJSFiles(array(
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/plugins/dataTables/jquery.dataTables.min.js' => array(),
-							(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/panel_templates/Argon/assets/js/dataTables.bootstrap4.min.js' => array()
-						));
-
-						$this->addJSScript('
-							$(document).ready(function() {
-								$(\'.dataTables-payments\').dataTable({
-									responsive: true,
-									order: [[ 2, "desc" ]],
-									language: {
-										"lengthMenu": "' . $this->_language->get('table', 'display_records_per_page') . '",
-										"zeroRecords": "' . $this->_language->get('table', 'nothing_found') . '",
-										"info": "' . $this->_language->get('table', 'page_x_of_y') . '",
-										"infoEmpty": "' . $this->_language->get('table', 'no_records') . '",
-										"infoFiltered": "' . $this->_language->get('table', 'filtered') . '",
-										"search": "' . $this->_language->get('general', 'search') . '",
-										"paginate": {
-											"next": "&raquo;",
-											"previous": "&laquo;"
-										}
-									}
-								});
-							});
-						');
-						break;
+                        break;
 				}
 			}
 		}
@@ -711,4 +602,3 @@ if(!class_exists('Argon_Panel_Template')){
 }
 
 $template = new Argon_Panel_Template($cache, $smarty, $language, $user, $pages);
-define('TEMPLATE_BUYCRAFT_SUPPORT', true);
