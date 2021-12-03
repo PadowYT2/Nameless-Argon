@@ -26,7 +26,7 @@
 
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="col-md-9">
-                            <h5 style="margin-top: 7px; margin-bottom: 7px;">{$EDITING_PAGE}</h5>
+                            <h3 style="margin-top: 10px; margin-bottom: 7px;">{$EDITING_PAGE}</h3>
                         </div>
                         <div class="col-md-3">
                             <span class="float-md-right">

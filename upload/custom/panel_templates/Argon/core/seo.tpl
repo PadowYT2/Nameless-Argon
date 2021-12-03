@@ -82,11 +82,11 @@
                     </div>
                 </div>
             </div>
-
-            {include file='footer.tpl'}
         </div>
+        {include file='footer.tpl'}
+    </div>
 
-        {include file='scripts.tpl'}
+    {include file='scripts.tpl'}
 
 </body>
 

@@ -12,7 +12,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell"></i>
-                    <span class="badge badge-primary">{$NOTICES|count}</span>
+                    <span class="badge badge-info">{$NOTICES|count}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
                     {if $NOTICES|count eq 0}

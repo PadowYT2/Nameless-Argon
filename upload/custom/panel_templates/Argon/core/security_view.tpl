@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-9">
-                            <h5 style="margin-top: 7px; margin-bottom: 7px;">{$LOG_TITLE}</h5>
+                            <h3 style="margin-top: 10px; margin-bottom: 7px;">{$LOG_TITLE}</h3>
                         </div>
                         <div class="col-md-3">
                             <span class="float-md-right"><a href="{$BACK_LINK}" class="btn btn-info">{$BACK}</a></span>

@@ -56,7 +56,7 @@
                                     </td>
                                     <td>
                                         <div class="float-md-right">
-                                            <div class="btn btn-secondary btn-sm" type="button" data-toggle="tooltip" title="This doesn't work, if you have a fix, report it to https://github.com/samerton/Nameless-Argon" data-placement="left"><i class="fas fa-arrows-alt"></i>
+                                            <div class="btn btn-secondary btn-sm" type="button"><i class="fas fa-arrows-alt"></i>
                                             </div>
                                             <a href="{$group.edit_link}" class="btn btn-warning btn-sm"><i
                                                     class="fas fa-edit fa-fw"></i></a>
