@@ -1,44 +1,31 @@
 {include file='header.tpl'}
 
-<body id="page-top">
-
-<!-- Wrapper -->
-<div id="wrapper">
+<body>
 
     <!-- Sidebar -->
     {include file='sidebar.tpl'}
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div class="main-content">
+        {include file='navbar.tpl'}
 
-        <!-- Main content -->
-        <div id="content">
-
-            <!-- Topbar -->
-            {include file='navbar.tpl'}
-
-            <!-- Begin Page Content -->
+        <!-- Header -->
+        <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
             <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">{$LABEL_TYPES}</h1>
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{$PANEL_INDEX}">{$DASHBOARD}</a></li>
-                        <li class="breadcrumb-item active">{$FORUM}</li>
-                        <li class="breadcrumb-item active">{$LABEL_TYPES}</li>
-                    </ol>
+                <div class="header-body">
+                    <h1 class="text-white">{$LABEL_TYPES}</h1>
                 </div>
+            </div>
+        </div>
 
-                <!-- Update Notification -->
-                {include file='includes/update.tpl'}
+        <div class="container-fluid mt--8">
+            <!-- Update Notification -->
+            {include file='includes/update.tpl'}
 
-                <div class="card shadow mb-4">
-                    <div class="card-body">
-
+            <div class="card">
+                <div class="card-body">
                         <div class="row">
                             <div class="col-md-9">
-                                <h5 style="margin-top: 7px; margin-bottom: 7px;">{$CREATING_LABEL_TYPE}</h5>
+                                <h3 style="margin-top: 10px; margin-bottom: 7px;">{$CREATING_LABEL_TYPE}</h3>
                             </div>
                             <div class="col-md-3">
                                 <span class="float-md-right"><button class="btn btn-warning" onclick="showCancelModal()"
@@ -62,31 +49,20 @@
                                             data-placement="top" title="{$INFO}"
                                             data-content="{$LABEL_TYPE_HTML_INFO}"></i></span><br />
                                 <input type="text" name="label_html"
-                                       placeholder="<span class=&quot;badge badge-primary&quot;>{literal}{x}{/literal}</span>"
+                                       placeholder="<span class=&quot;badge badge-info&quot;>{literal}{x}{/literal}</span>"
                                        id="label_type_html" class="form-control" value="{$LABEL_TYPE_HTML_VALUE}">
                             </div>
                             <div class="form-group">
                                 <input type="hidden" name="token" value="{$TOKEN}">
-                                <input type="submit" class="btn btn-primary" value="{$SUBMIT}">
+                                <input type="submit" class="btn btn-info" value="{$SUBMIT}">
                             </div>
                         </form>
 
                     </div>
                 </div>
-
-                <!-- Spacing -->
-                <div style="height:1rem;"></div>
-
-                <!-- End Page Content -->
-            </div>
-
-            <!-- End Main Content -->
         </div>
 
         {include file='footer.tpl'}
-
-        <!-- End Content Wrapper -->
-    </div>
 
     <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -102,14 +78,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{$NO}</button>
-                    <a href="{$CANCEL_LINK}" class="btn btn-primary">{$YES}</a>
+                    <a href="{$CANCEL_LINK}" class="btn btn-info">{$YES}</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- End Wrapper -->
-</div>
 
 {include file='scripts.tpl'}
 
