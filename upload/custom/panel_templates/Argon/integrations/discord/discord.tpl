@@ -26,11 +26,10 @@
                     <!-- Success and Error Alerts -->
                     {include file='includes/alerts.tpl'}
 
-                    <div class="card shadow border-left-info">
-                        <div class="card-body">
-                            <h5><i class="icon fa fa-info-circle"></i> {$INFO}</h5>
-                            {$INVITE_LINK}
-                        </div>
+                    <div class="alert alert-info">
+                        <h5 class="h3 mb-0" style="color: white;"><i class="icon fa fa-info-circle"></i> {$INFO}
+                        </h5>
+                        {$INVITE_LINK}
                     </div>
                     <br />
 
