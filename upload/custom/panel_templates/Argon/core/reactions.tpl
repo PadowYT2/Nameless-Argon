@@ -12,7 +12,7 @@
         <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
             <div class="container-fluid">
                 <div class="header-body">
-                    <h1 class="text-white">{$GENERAL_SETTINGS}</h1>
+                    <h1 class="text-white">{$REACTIONS}</h1>
                 </div>
             </div>
         </div>

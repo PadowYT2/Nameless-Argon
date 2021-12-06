@@ -32,6 +32,7 @@
                                     href="{$BACK_LINK}">{$BACK}</a></span>
                         </div>
                     </div>
+                    </br>
 
                     {if count($ENDPOINTS_ARRAY)}
                     <div class="table-responsive">

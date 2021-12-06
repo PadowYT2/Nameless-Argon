@@ -26,6 +26,8 @@
                     <a class="btn btn-info" style="margin-bottom: 10px" href="{$NEW_GROUP_LINK}">{$NEW_GROUP}</a>
                     <a class="btn btn-info" style="margin-bottom: 10px" href="{$GROUP_SYNC_LINK}"><i
                             class="fas fa-external-link-alt"></i> {$GROUP_SYNC}</a>
+                    </br>
+                    </br>
                     <!-- Success and Error Alerts -->
                     {include file='includes/alerts.tpl'}
 
