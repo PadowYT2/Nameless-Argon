@@ -40,7 +40,7 @@
                                     <input type="hidden" name="token" value="{$TOKEN}" />
                                     <input type="submit" class="btn btn-danger" value="{$DISABLE}">
                                 </form>
-                                <a href="{$widget.settings_link}" class="btn btn-primary">{$EDIT}</a>
+                                <a href="{$widget.settings_link}" class="btn btn-info">{$EDIT}</a>
                                 {else}
                                 <form action="{$widget.enable_link}" method="post" style="display: inline">
                                     <input type="hidden" name="token" value="{$TOKEN}" />

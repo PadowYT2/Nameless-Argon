@@ -31,7 +31,7 @@
                                     <span class="float-md-right">
                                         {if isset($SETTINGS)}<a href="{$SETTINGS_LINK}"
                                                                 class="btn btn-success">{$SETTINGS}</a>{/if}
-                                        <a href="{$BACK_LINK}" class="btn btn-primary">{$BACK}</a>
+                                        <a href="{$BACK_LINK}" class="btn btn-info">{$BACK}</a>
                                     </span>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="token" value="{$TOKEN}">
                                 </br>
-                                <input type="submit" class="btn btn-primary" value="{$SUBMIT}">
+                                <input type="submit" class="btn btn-info" value="{$SUBMIT}">
                             </div>
                         </form>
 

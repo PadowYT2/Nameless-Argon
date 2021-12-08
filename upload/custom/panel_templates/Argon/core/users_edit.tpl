@@ -30,7 +30,7 @@
                         <div class="col-md-3">
                             <span class="float-md-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">{$ACTIONS}</button>
                                     <div class="dropdown-menu">
                                         {if isset($DELETE_USER)}<a class="dropdown-item" href="#"
@@ -181,7 +181,7 @@
                         <input type="hidden" name="token" value="{$TOKEN}">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="id" value="{$USER_ID}">
-                        <input type="submit" class="btn btn-primary" value="{$YES}">
+                        <input type="submit" class="btn btn-info" value="{$YES}">
                     </form>
                 </div>
             </div>
