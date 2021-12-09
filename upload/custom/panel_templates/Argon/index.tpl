@@ -166,7 +166,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{$NO}</button>
-                        <a href="#" id="leaveSiteA" class="btn btn-primary" target="_blank">{$YES}</a>
+                        <a href="#" id="leaveSiteA" class="btn btn-info" target="_blank">{$YES}</a>
                     </div>
                 </div>
             </div>

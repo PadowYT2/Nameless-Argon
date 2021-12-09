@@ -86,7 +86,7 @@
 									<option class="{$CAROUSEL_HEAD_COLOR}" value="{$CAROUSEL_HEAD_COLOR}">
 										{$CAROUSEL_HEAD_COLOR}
 									</option>
-									<option class="text-primary" value="text-primary">text-primary</option>
+									<option class="text-info" value="text-info">text-info</option>
 									<option class="text-secondary" value="text-secondary">text-secondary</option>
 									<option class="text-success" } value="text-success">text-success</option>
 									<option class="text-danger" value="text-danger">text-danger</option>
@@ -109,7 +109,7 @@
 									<option class="{$CAROUSEL_TITLE_COLOR}" value="{$CAROUSEL_TITLE_COLOR}">
 										{$CAROUSEL_TITLE_COLOR}
 									</option>
-									<option class="text-primary" value="text-primary">text-primary</option>
+									<option class="text-info" value="text-info">text-info</option>
 									<option class="text-secondary" value="text-secondary">text-secondary</option>
 									<option class="text-success" } value="text-success">text-success</option>
 									<option class="text-danger" value="text-danger">text-danger</option>

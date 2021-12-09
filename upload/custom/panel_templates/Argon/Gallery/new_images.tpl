@@ -84,7 +84,7 @@
 							<label>{$HEAD_COLOR_CAROUSEL}</label>
 							<div class="form-group">
 								<select class="form-control mr-sm-2" name="carousel_head_color">
-									<option class="text-primary" value="text-primary">text-primary</option>
+									<option class="text-info" value="text-info">text-info</option>
 									<option class="text-secondary" value="text-secondary">text-secondary</option>
 									<option class="text-success" } value="text-success">text-success</option>
 									<option class="text-danger" value="text-danger">text-danger</option>
@@ -103,7 +103,7 @@
 							<label>{$TITLE_COLOR_CAROUSEL}</label>
 							<div class="form-group">
 								<select class="form-control mr-sm-2" name="carousel_title_color">
-									<option class="text-primary" value="text-primary">text-primary</option>
+									<option class="text-info" value="text-info">text-info</option>
 									<option class="text-secondary" value="text-secondary">text-secondary</option>
 									<option class="text-success" } value="text-success">text-success</option>
 									<option class="text-danger" value="text-danger">text-danger</option>

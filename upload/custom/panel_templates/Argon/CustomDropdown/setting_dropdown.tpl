@@ -102,7 +102,7 @@
 
 														<div class="form-group mr-sm-2">
 															<input type="hidden" name="token" value="{$TOKEN}">
-															<input type="hidden" class="btn btn-primary"
+															<input type="hidden" class="btn btn-info"
 																name="deletePage" value="{$dropdown_page.id}">
 															<button class="btn btn-danger btn-sm" title="{$REMOVE}"
 																type="button" data-toggle="modal"

@@ -40,7 +40,7 @@
                         <form action="" method="post">
                             <div class="form-group">
                                 <label for="label_type_name">{$LABEL_TYPE_NAME}</label>
-                                <input type="text" name="label_name" placeholder="Primary" id="label_type_name"
+                                <input type="text" name="label_name" placeholder="info" id="label_type_name"
                                        class="form-control" value="{$LABEL_TYPE_NAME_VALUE}">
                             </div>
                             <div class="form-group">
