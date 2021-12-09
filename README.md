@@ -1,5 +1,5 @@
 # Nameless-Argon
-A light template for the StaffCP in [NamelessMC version 2](https://github.com/NamelessMC/Nameless).
+A light panel template for NamelessMC v2-pre12.
 
 Built with the [Argon](https://www.creative-tim.com/product/argon-dashboard) template.
 
