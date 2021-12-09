@@ -23,7 +23,7 @@ if(!class_exists('Argon_Panel_Template')){
 
 			parent::__construct(
 				'Argon',  // Template name
-				'1.2.0',  // Template version
+				'1.1.0',  // Template version
 				'2.0.0-pr12',  // Nameless version template is made for
 				'<a href="https://github.com/samerton" target="_blank">Samerton</a> & <a href="https://padow.ru" target="_blank">PadowYT2</a>'  // Author, you can use HTML here
 			);

@@ -24,42 +24,27 @@
                     <!-- Success and Error Alerts -->
                     {include file='includes/alerts.tpl'}
 
-                    <div class="row mt-5 mb-5">
-
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            {include file='includes/alerts.tpl'}
-                            <div class="card">
-                                <div style="padding:1rem;">
-                                    <form action="?action=update" method="POST">
-                                        <div class="form-group">
-                                            <label for="">Email Paypal</label>
-                                            <input type="text" name="email" class="form-control" value="{$EMAIL}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Währung</label>
-                                            <select name="currency" class="form-control">
-                                                <option value="USD">USD</option>
-                                                <option value="EUR" {if $CURRENCY=='EUR' }selected{/if}>EUR</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-info w-100">Speichern</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                    <form action="?action=update" method="POST">
+                        <div class="form-group">
+                            <label for="">Email Paypal</label>
+                            <input type="text" name="email" class="form-control" value="{$EMAIL}">
                         </div>
-                        <div class="col-md-4"></div>
-
-                    </div>
-
+                        <div class="form-group">
+                            <label for="">Währung</label>
+                            <select name="currency" class="form-control">
+                                <option value="USD">USD</option>
+                                <option value="EUR" {if $CURRENCY=='EUR' }selected{/if}>EUR</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info w-100">Speichern</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
         {include file='footer.tpl'}
-
 
         {include file='scripts.tpl'}
 
