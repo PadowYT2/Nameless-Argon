@@ -7,7 +7,7 @@
                     <span class="h2 font-weight-bold mb-0">{$VALUE}</span>
                 </div>
                 <div class="col-auto">
-                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
                         {$ICON}
                     </div>
                 </div>
