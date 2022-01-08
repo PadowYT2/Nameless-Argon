@@ -129,9 +129,11 @@
                         </div>
                     </form>
 
+                    {if !isset($PARTYDRAGEN_PREMIUM)}
                     <center>
                         <p>Forms Module by <a href="https://partydragen.com/" target="_blank">Partydragen</a></p>
                     </center>
+                    {/if}
                 </div>
             </div>
         </div>

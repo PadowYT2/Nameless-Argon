@@ -23,7 +23,7 @@
 
 			<div class="card">
 				<div class="card-body">
-					<h3 style="margin-top: 10px; margin-bottom: 7px;">{$SUBMISSIONS}</h3>
+					<h3 style="display:inline;">{$SUBMISSIONS}</h3>
 					<hr>
 
 					<form action="" method="post">
@@ -34,12 +34,6 @@
 							<div class="col-2">
 								<label for="form_selection">{$STATUS}</label>
 							</div>
-							<div class="col-2">
-								<label for="form_selection">{$USER}</label>
-							</div>
-						</div>
-
-						<div class="form-row">
 							<div class="col-2">
 								<select class="form-control" id="form_selection" name="form_selection">
 									{foreach from=$FORM_LIST item=form}
@@ -126,9 +120,11 @@
 					{$NO_SUBMISSIONS}
 					{/if}
 
+					{if !isset($PARTYDRAGEN_PREMIUM)}
 					<center>
 						<p>Forms Module by <a href="https://partydragen.com/" target="_blank">Partydragen</a></p>
 					</center>
+					{/if}
 				</div>
 			</div>
 		</div>
