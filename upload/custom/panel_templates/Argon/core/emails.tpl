@@ -25,7 +25,9 @@
                 <div class="card-body">
                     <!-- Success and Error Alerts -->
                     {include file='includes/alerts.tpl'}
-
+                    {if isset($MASS_MESSAGE_LINK)}
+                    <a href="{$MASS_MESSAGE_LINK}" class="btn btn-info">{$MASS_MESSAGE}</a>
+                    {/if}
                     <a href="{$EDIT_EMAIL_MESSAGES_LINK}" class="btn btn-info">{$EDIT_EMAIL_MESSAGES}</a>
                     <a href="{$EMAIL_ERRORS_LINK}" class="btn btn-info">{$EMAIL_ERRORS}</a>
                     <a href="{$SEND_TEST_EMAIL_LINK}" class="btn btn-info">{$SEND_TEST_EMAIL}</a>
