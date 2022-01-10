@@ -92,7 +92,7 @@
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="token" value="{$TOKEN}">
-                            <input type="submit" class="btn btn-primary" value="{$SUBMIT}">
+                            <input type="submit" class="btn btn-info" value="{$SUBMIT}">
                         </div>
                     </form>
 

@@ -339,7 +339,7 @@ if(!class_exists('Argon_Panel_Template')){
                                     "search": "' . $this->_language->get('general', 'search') . '",
                                     "paginate": {
                                         "next": "&raquo;",
-                                        "previous": "&raquo;"
+                                        "previous": "&laquo;"
                                     }
                                 }
                             });
@@ -386,7 +386,7 @@ if(!class_exists('Argon_Panel_Template')){
 										"search": "' . $this->_language->get('general', 'search') . '",
 										"paginate": {
 										    "next": "&raquo;",
-										    "previous": "&raquo;"
+										    "previous": "&laquo;"
 										}
 									}
 								});
@@ -535,7 +535,7 @@ if(!class_exists('Argon_Panel_Template')){
 										"search": "' . $this->_language->get('general', 'search') . '",
 										"paginate": {
 										    "next": "&raquo;",
-										    "previous": "&raquo;"
+										    "previous": "&laquo;"
 										}
 									},
 									order: [[ ' . SORT . ', \'desc\']]
