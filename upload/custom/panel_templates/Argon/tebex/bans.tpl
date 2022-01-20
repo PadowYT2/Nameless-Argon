@@ -12,7 +12,7 @@
         <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
             <div class="container-fluid">
                 <div class="header-body">
-                    <h1 class="text-white">{$PAYMENTS}</h1>
+                    <h1 class="text-white">{$BANS}</h1>
                 </div>
             </div>
         </div>
@@ -23,47 +23,50 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="float-md-right mr-sm-2">
-                        <a style="display:inline" href="{$CREATE_PAYMENT_LINK}" class="btn btn-info"><i
-                                class="fa fa-plus-circle"></i>{$CREATE_PAYMENT}</a>
-                    </div>
-                    </br>
+                    {if isset($NEW_BAN)}
+                    <a class="btn btn-info" href="{$NEW_BAN_LINK}">{$NEW_BAN}</a>
                     <hr />
+                    {/if}
 
                     <!-- Success and Error Alerts -->
                     {include file='includes/alerts.tpl'}
 
-                    {if isset($NO_PAYMENTS)}
-                    <p>{$NO_PAYMENTS}</p>
+                    {if isset($NO_BANS)}
+                    <p>{$NO_BANS}</p>
                     {else}
                     <div class="table-responsive">
-                        <table class="table table-striped dataTables-payments" style="width:100%">
+                        <table class="table table-bordered dataTables-bans">
+                            <colgroup>
+                                <col span="1" style="width: 35%;">
+                                <col span="1" style="width: 30%;">
+                                <col span="1" style="width: 20%">
+                                <col span="1" style="width: 15%">
+                            </colgroup>
                             <thead>
                                 <tr>
                                     <th>{$USER}</th>
-                                    <th>{$AMOUNT}</th>
-                                    <th>{$STATUS}</th>
+                                    <th>{$IP_ADDRESS}</th>
                                     <th>{$DATE}</th>
                                     <th>{$VIEW}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {foreach from=$ALL_PAYMENTS item=payment}
+                                {foreach from=$BAN_LIST item=ban}
                                 <tr>
-                                    <td><a href="{$payment.user_link}" style="{$payment.user_style}"><img
-                                                src="{$payment.user_avatar}" class="rounded"
-                                                style="max-width:32px;max-height:32px;" alt="{$payment.username}" />
-                                            {$payment.username}</a></td>
-                                    <td>{$payment.currency_symbol}{$payment.amount}</td>
-                                    <td>{$payment.status}</td>
-                                    <td data-sort="{$payment.date_unix}">{$payment.date}</td>
-                                    <td><a href="{$payment.link}" class="btn btn-info btn-sm">{$VIEW}</a></td>
+                                    <td><img src="{$ban.avatar}" class="rounded" style="max-width:25px;max-height:25px;"
+                                            alt="{$ban.ign}" /> <span style="{$ban.style}">{$ban.ign}</span></td>
+                                    <td>{$ban.ip}</td>
+                                    <td data-sort="{$ban.date_unix}">{$ban.date}</td>
+                                    <td>
+                                        <a href="{$ban.link}" class="btn btn-info">{$VIEW}</a>
+                                    </td>
                                 </tr>
                                 {/foreach}
                             </tbody>
                         </table>
                     </div>
                     {/if}
+
                 </div>
             </div>
         </div>

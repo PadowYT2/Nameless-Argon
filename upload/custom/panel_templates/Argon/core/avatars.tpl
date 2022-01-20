@@ -114,7 +114,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="uploadModalLabel">{$UPLOAD_NEW_IMAGE}</h5>
+                    <h4 class="modal-title" id="uploadModalLabel">{$UPLOAD_NEW_IMAGE}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="{$CLOSE}">
                         <span aria-hidden="true">&times;</span>
                     </button>

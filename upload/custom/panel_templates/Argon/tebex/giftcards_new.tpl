@@ -12,7 +12,7 @@
         <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
             <div class="container-fluid">
                 <div class="header-body">
-                    <h1 class="text-white">{$SUGGESTIONS}</h1>
+                    <h1 class="text-white">{$GIFT_CARDS}</h1>
                 </div>
             </div>
         </div>
@@ -23,30 +23,36 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row" style="margin-bottom: 10px;">
                         <div class="col-md-9">
-                            <h3 style="margin-top: 10px; margin-bottom: 7px;">{$EDITING_CATEGORY}</h3>
+                            <h3 style="margin-top: 10px; margin-bottom: 7px;">{$CREATING_GIFT_CARD}</h3>
                         </div>
                         <div class="col-md-3">
-                            <span class="float-md-right"><a href="{$BACK_LINK}"
-                                    class="btn btn-warning">{$BACK}</a></span>
+                            <span class="float-md-right">
+                                <button role="button" class="btn btn-warning"
+                                    onclick="showCancelModal()">{$CANCEL}</button>
+                            </span>
                         </div>
                     </div>
-                    <hr>
+                    <hr />
 
                     <!-- Success and Error Alerts -->
                     {include file='includes/alerts.tpl'}
 
-                    <form role="form" action="" method="post">
+                    <form action="" method="post">
                         <div class="form-group">
-                            <label for="InputName">{$CATEGORY_NAME}</label>
-                            <input type="text" name="name" class="form-control" id="InputName"
-                                placeholder="{$CATEGORY_NAME}" value="{$CATEGORY_NAME_VALUE}">
+                            <label for="inputValue">{$GIFT_CARD_VALUE}</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">{$CURRENCY}</span>
+                                </div>
+                                <input type="number" class="form-control" id="inputValue" name="amount"
+                                    placeholder="{$GIFT_CARD_VALUE}" step="0.01">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="InputOrder">{$CATEGORY_ORDER}</label>
-                            <input type="number" min="1" class="form-control" id="InputOrder" name="order"
-                                value="{$CATEGORY_ORDER_VALUE}">
+                            <label for="inputNote">{$GIFT_CARD_NOTE}</label> <small>{$OPTIONAL}</small>
+                            <textarea class="form-control" id="inputNote" name="note"></textarea>
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="token" value="{$TOKEN}">
@@ -54,18 +60,11 @@
                         </div>
                     </form>
 
-                    {if !$PREMIUM}
-                    <center>
-                        <p>Suggestion Module by <a href="https://partydragen.com/" target="_blank">Partydragen</a></p>
-                    </center>
-                    {/if}
                 </div>
             </div>
         </div>
 
-        {include file='footer.tpl'}
-
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -75,23 +74,23 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {$CONFIRM_DELETE_FIELD}
+                        {$CONFIRM_CANCEL}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{$NO}</button>
-                        <a href="#" id="deleteLink" class="btn btn-danger">{$YES}</a>
+                        <a href="{$CANCEL_LINK}" class="btn btn-info">{$YES}</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {include file='footer.tpl'}
 
         {include file='scripts.tpl'}
 
         <script type="text/javascript">
-            function showDeleteModal(id) {
-                $('#deleteLink').attr('href', id);
-                $('#deleteModal').modal().show();
+            function showCancelModal() {
+                $('#cancelModal').modal().show();
             }
         </script>
 

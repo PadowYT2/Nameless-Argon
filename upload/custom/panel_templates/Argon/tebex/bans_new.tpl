@@ -12,7 +12,7 @@
         <div class="header bg-gradient-info pb-9 pt-5 pt-md-7">
             <div class="container-fluid">
                 <div class="header-body">
-                    <h1 class="text-white">{$SUGGESTIONS}</h1>
+                    <h1 class="text-white">{$BANS}</h1>
                 </div>
             </div>
         </div>
@@ -23,30 +23,34 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row" style="margin-bottom: 10px;">
                         <div class="col-md-9">
-                            <h3 style="margin-top: 10px; margin-bottom: 7px;">{$EDITING_CATEGORY}</h3>
+                            <h3 style="margin-top: 10px; margin-bottom: 7px;">{$CREATING_BAN}</h3>
                         </div>
                         <div class="col-md-3">
-                            <span class="float-md-right"><a href="{$BACK_LINK}"
-                                    class="btn btn-warning">{$BACK}</a></span>
+                            <span class="float-md-right">
+                                <button role="button" class="btn btn-warning"
+                                    onclick="showCancelModal()">{$CANCEL}</button>
+                            </span>
                         </div>
                     </div>
-                    <hr>
+                    <hr />
 
                     <!-- Success and Error Alerts -->
                     {include file='includes/alerts.tpl'}
 
-                    <form role="form" action="" method="post">
+                    <form action="" method="post">
                         <div class="form-group">
-                            <label for="InputName">{$CATEGORY_NAME}</label>
-                            <input type="text" name="name" class="form-control" id="InputName"
-                                placeholder="{$CATEGORY_NAME}" value="{$CATEGORY_NAME_VALUE}">
+                            <label for="inputUser">{$UUID}</label>
+                            <input type="text" class="form-control" name="user" id="inputUser" placeholder="{$UUID}">
                         </div>
                         <div class="form-group">
-                            <label for="InputOrder">{$CATEGORY_ORDER}</label>
-                            <input type="number" min="1" class="form-control" id="InputOrder" name="order"
-                                value="{$CATEGORY_ORDER_VALUE}">
+                            <label for="inputIP">{$IP_ADDRESS}</label> <small>{$OPTIONAL}</small>
+                            <input type="text" class="form-control" name="ip" id="inputIP" placeholder="{$IP_ADDRESS}">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputReason">{$REASON}</label> <small>{$OPTIONAL}</small>
+                            <textarea id="inputReason" name="reason" class="form-control" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="token" value="{$TOKEN}">
@@ -54,18 +58,11 @@
                         </div>
                     </form>
 
-                    {if !$PREMIUM}
-                    <center>
-                        <p>Suggestion Module by <a href="https://partydragen.com/" target="_blank">Partydragen</a></p>
-                    </center>
-                    {/if}
                 </div>
             </div>
         </div>
 
-        {include file='footer.tpl'}
-
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -75,23 +72,23 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {$CONFIRM_DELETE_FIELD}
+                        {$CONFIRM_CANCEL}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{$NO}</button>
-                        <a href="#" id="deleteLink" class="btn btn-danger">{$YES}</a>
+                        <a href="{$CANCEL_LINK}" class="btn btn-warning">{$YES}</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {include file='footer.tpl'}
 
         {include file='scripts.tpl'}
 
         <script type="text/javascript">
-            function showDeleteModal(id) {
-                $('#deleteLink').attr('href', id);
-                $('#deleteModal').modal().show();
+            function showCancelModal() {
+                $('#cancelModal').modal().show();
             }
         </script>
 

@@ -23,11 +23,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="float-md-right mr-sm-2">
-                        <a style="display:inline" href="{$CREATE_PAYMENT_LINK}" class="btn btn-info"><i
-                                class="fa fa-plus-circle"></i>{$CREATE_PAYMENT}</a>
-                    </div>
-                    </br>
+                    <a class="btn btn-info" href="{$NEW_PAYMENT_LINK}">{$NEW_PAYMENT}</a>
                     <hr />
 
                     <!-- Success and Error Alerts -->
@@ -37,12 +33,11 @@
                     <p>{$NO_PAYMENTS}</p>
                     {else}
                     <div class="table-responsive">
-                        <table class="table table-striped dataTables-payments" style="width:100%">
+                        <table class="table table-striped dataTables-payments">
                             <thead>
                                 <tr>
                                     <th>{$USER}</th>
                                     <th>{$AMOUNT}</th>
-                                    <th>{$STATUS}</th>
                                     <th>{$DATE}</th>
                                     <th>{$VIEW}</th>
                                 </tr>
@@ -55,7 +50,6 @@
                                                 style="max-width:32px;max-height:32px;" alt="{$payment.username}" />
                                             {$payment.username}</a></td>
                                     <td>{$payment.currency_symbol}{$payment.amount}</td>
-                                    <td>{$payment.status}</td>
                                     <td data-sort="{$payment.date_unix}">{$payment.date}</td>
                                     <td><a href="{$payment.link}" class="btn btn-info btn-sm">{$VIEW}</a></td>
                                 </tr>
@@ -64,6 +58,7 @@
                         </table>
                     </div>
                     {/if}
+
                 </div>
             </div>
         </div>
