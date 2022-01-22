@@ -81,6 +81,20 @@
                                 placeholder="{$WIKI_PAGE_CONTEXT}">{$WIKI_PAGE_CONTEXT_VALUE}</textarea>
                         </div>
                         <div class="form-group">
+                            <label for="InputWikiVisible">{$WIKI_PAGE_VISIBLE}</label>
+                            <select class="form-control" id="InputWikiVisible" name="InputWikiVisible">
+                                <option value="1" selected>Enable</option>
+                                <option value="0">Disable</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputWikiLikeable">{$WIKI_PAGE_LIKEABLE}</label>
+                            <select class="form-control" id="InputWikiLikeable" name="InputWikiLikeable">
+                                <option value="1" selected>Enable</option>
+                                <option value="0">Disable</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="InputWikiEnabled">{$WIKI_PAGE_ENABLED}</label>
                             <select class="form-control" id="InputWikiEnabled" name="InputWikiEnabled">
                                 <option value="1" selected>Enable</option>
